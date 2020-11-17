@@ -1,28 +1,27 @@
-let guess
+let rand
+let guessBox
 let button
 let result
-let rand
 
 function setup() {
   noCanvas()
+  rand = round(random(10))
   createP("Number Guessing Game")
-  guess = createInput()
-  
+  guessBox = createInput()
   button = createButton("Go!")
   button.mouseClicked(checkAnswer)
   result = createP()
-  rand = round(random(10))
 }
 
 function checkAnswer() {
   console.log(rand)
-  if (guess.value() == rand) {
+  if (guessBox.value() == rand) {
     result.html("You're right!")
-  }
-  else if (2 + 2 == 5) {
-             
   }
   else {
     result.html("Wrong!")
   }
 }
+
+
+
