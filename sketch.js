@@ -4,7 +4,8 @@ let result
 let rand
 
 function setup() {
-  createCanvas(400, 400);
+  noCanvas()
+  createP("Number Guessing Game")
   guess = createInput()
   
   button = createButton("Go!")
@@ -18,11 +19,10 @@ function checkAnswer() {
   if (guess.value() == rand) {
     result.html("You're right!")
   }
+  else if (2 + 2 == 5) {
+             
+  }
   else {
     result.html("Wrong!")
   }
-}
-
-function draw() {
-  background(220);
 }
