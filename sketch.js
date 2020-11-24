@@ -1,28 +1,38 @@
-let guess
-let button
-let result
 let rand
+let guessBox
+let result
+let triesLeft = 3
 
 function setup() {
   noCanvas()
+  rand = round(random(10))
   createP("Number Guessing Game")
-  guess = createInput()
-  
-  button = createButton("Go!")
+  guessBox = createInput()
+  let button = createButton("Go!")
   button.mouseClicked(checkAnswer)
   result = createP()
-  rand = round(random(10))
 }
 
 function checkAnswer() {
+  //alert(guessBox.value())
+
   console.log(rand)
-  if (guess.value() == rand) {
-    result.html("You're right!")
+
+  
+    if (guessBox.value() == rand) {
+      result.html("You're right!")
+    } else if (guessBox.value() < rand) {
+      result.html("Too low!")
+      triesLeft--
+    } else {
+      //tell user their guess is too high
+      result.html("Too high!")
+      triesLeft--
+    }
+
+  if (triesLeft <= 0) {
+    result.html("You lose!")
   }
-  else if (2 + 2 == 5) {
-             
-  }
-  else {
-    result.html("Wrong!")
-  }
+  
+  
 }
