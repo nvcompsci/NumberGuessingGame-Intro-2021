@@ -1,38 +1,33 @@
-let rand
-let guessBox
-let result
-let triesLeft = 3
+let colors = ["red","blue","red","yellow","yellow","green","blue","green"]
+let cards = []
+let clicks = 0
 
 function setup() {
-  noCanvas()
-  rand = round(random(10))
-  createP("Number Guessing Game")
-  guessBox = createInput()
-  let button = createButton("Go!")
-  button.mouseClicked(checkAnswer)
-  result = createP()
+  createP("Matching Game")
+  
+  for (let i=0; i<8; i++) {
+    cards[i] = createButton("Card")
+    //cards[i] means one button
+    //cards[i].style("background-color",colors[i])
+    cards[i].id(i)
+    cards[i].mouseClicked(onCardClick)
+  }  
 }
 
-function checkAnswer() {
-  //alert(guessBox.value())
-
-  console.log(rand)
-
+function onCardClick() {
+  clicks++
+  console.log(this.id())
   
-    if (guessBox.value() == rand) {
-      result.html("You're right!")
-    } else if (guessBox.value() < rand) {
-      result.html("Too low!")
-      triesLeft--
-    } else {
-      //tell user their guess is too high
-      result.html("Too high!")
-      triesLeft--
-    }
-
-  if (triesLeft <= 0) {
-    result.html("You lose!")
+  this.style("background-color",colors[this.id()])
+  
+  if (clicks > 2) {
+    resetButtons()
   }
-  
-  
+}
+
+function resetButtons() {
+  clicks = 0
+  for (let i=0; i < 8; i++) {
+    cards[i].style("background-color","grey")
+  }
 }
